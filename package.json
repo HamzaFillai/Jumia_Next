@@ -1,0 +1,26 @@
+{
+  "name": "jumiaweb",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "csv-parser": "^3.0.0",
+    "d3": "^7.2.1",
+    "data-forge": "^1.9.2",
+    "fs": "0.0.1-security",
+    "js-cookie": "^3.0.1",
+    "next": "12.0.7",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "xlsx": "^0.17.4"
+  },
+  "devDependencies": {
+    "eslint": "8.5.0",
+    "eslint-config-next": "12.0.7"
+  }
+}
