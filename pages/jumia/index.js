@@ -5,11 +5,11 @@ import axios from 'axios'
 
 export default function index() {
 
-    const [ tvs, setTvs] = useState();
-    const [ recs, setRecs] = useState();
-    const [classe , setClasse] = useState();
-    const [product,setProduct] = useState();
-    const [clustering,setClustering] = useState();
+    const [ tvs, setTvs] = useState([]);
+    const [ recs, setRecs] = useState([]);
+    const [classe , setClasse] = useState(null);
+    const [product,setProduct] = useState(null);
+    const [clustering,setClustering] = useState(null);
     const date = Date.now();
 
     const logout = () =>
