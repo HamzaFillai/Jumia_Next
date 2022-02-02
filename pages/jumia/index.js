@@ -15,6 +15,7 @@ export default function Home() {
     const [product,setProduct] = useState(null);
     const [clustering,setClustering] = useState(null);
     const date = Date.now();
+    const array = [];
 
     const logout = () =>
     {
@@ -143,9 +144,71 @@ export default function Home() {
         }
     }
 
+    function inTable(x,T)
+    {
+        for(let i=0;i<T.length;i++)
+        {
+            if(x==T[i])
+            {
+                return true;
+            }
+        }
+        return false
+    }
+
+    function duplic(T)
+    {
+        const array = []
+        for(let i=0;i<T.length;i++)
+        {
+            for (let j = 0; j<T.length; j++) 
+            {
+                if(T[i]==T[j] && inTable(T[j],array)==true)
+                {
+                    
+                }
+                if(T[i]==T[j] && inTable(T[j],array)==false)
+                {
+                    array.push(T[j]);
+                }
+            }
+        }
+        return array;
+    }
+
     useEffect(() => {
         axios.get("http://localhost:8081/getCluster/"+Cookies.get("iduser")).then((response)=>{
-                setClustering(response.data.reverse());
+                if(response.data.length==1)
+                {
+                    array.push(response.data[0].classe);
+                }
+                if(response.data.length==2)
+                {
+                    array.push(response.data[1].classe);
+                    array.push(response.data[0].classe);
+                }
+                if(response.data.length==3)
+                {
+                    array.push(response.data[2].classe);
+                    array.push(response.data[1].classe);
+                    array.push(response.data[0].classe);
+                }
+                if(response.data.length==4)
+                {
+                    array.push(response.data[3].classe);
+                    array.push(response.data[2].classe);
+                    array.push(response.data[1].classe);
+                    array.push(response.data[0].classe);
+                }
+                array.push("TV")
+                array.push("Phone")
+                array.push("Montre")
+                array.push("Electromenage")
+                array.push("Parfum")
+                array.push("Informatique")
+                let array2 = duplic(array);
+                array2.length=4;
+                setClustering(array2)
             })
     }, [])
 
@@ -175,9 +238,9 @@ export default function Home() {
 
     let itemsToRender;
     if (clustering) {
-        itemsToRender = clustering.map(item => {
-        return <div key={item.id} className={styles.cat}>{item.classe}</div>;
-    })};
+        itemsToRender =  clustering.map((item) =>
+        <div className={styles.cat}>{item}</div>
+      )};
     
     return (
         <div className={styles.container}>
