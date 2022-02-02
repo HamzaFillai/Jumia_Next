@@ -159,19 +159,19 @@ export default function index() {
 
     const productsGenerator = () => {
         const items = [];
-        if(tvs!=null)
+        
         {
           for (let i = 0; i < tvs.length; i++) {
             items.push({ 
               key : tvs[i].id,
-              nom: <td onClick={()=>cluster( tvs[i].idProduct, tvs[i].marque)} style={{cursor:"pointer"}}>{tvs[i].caracteristique}</td>, 
+              nom: <span onClick={()=>cluster( tvs[i].idProduct, tvs[i].marque)} style={{cursor:"pointer"}}>{tvs[i].caracteristique}</span>, 
             });
           }
         }
         return items;
       };
     
-      const products = productsGenerator();
+    const products = productsGenerator();
 
     const columns = [
         {
