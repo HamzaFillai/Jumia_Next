@@ -238,8 +238,8 @@ export default function Home() {
 
     let itemsToRender;
     if (clustering) {
-        itemsToRender =  clustering.map((item) =>
-        <div className={styles.cat}>{item}</div>
+        itemsToRender =  clustering.map((item,i) =>
+        <div key={i} className={styles.cat}>{item}</div>
       )};
     
     return (
