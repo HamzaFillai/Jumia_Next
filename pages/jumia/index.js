@@ -7,7 +7,7 @@ import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 
-export default function index() {
+export default function Home() {
 
     const [ tvs, setTvs] = useState([]);
     const [ recs, setRecs] = useState([]);
