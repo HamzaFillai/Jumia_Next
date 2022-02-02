@@ -1,16 +1,36 @@
-.h1,.button
-{
-  text-align: center;
+.container {
+  background-color: #f5f5f5;
+  padding: 12px;
 }
 
-.table
-{
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.homejumia
-{
+.homejumia {
   display: flex;
   justify-content: space-around;
+}
+
+.display {
+  display: flex;
+  margin-left: 10vh;
+}
+
+.categorie {
+  background-color: white;
+  padding: 12px;
+  line-height: 40px;
+  border-radius: 12px;
+  width: 15%;
+  margin-right: 5vh;
+  height: 50vh;
+}
+
+.produit {
+  background-color: white;
+  padding: 12px;
+}
+
+.produits {
+  border: "1px solid black";
+
+  overflow: "auto";
+  line-height: "50px";
 }

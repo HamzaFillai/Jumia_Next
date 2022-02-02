@@ -2,6 +2,10 @@ import React, { useState , useEffect} from 'react'
 import styles from "../../styles/Home.module.css"
 import Cookies from 'js-cookie'
 import axios from 'axios'
+import "bootstrap/dist/css/bootstrap.css";
+import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
+import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
 
 export default function index() {
 
@@ -71,16 +75,6 @@ export default function index() {
 
         setClasse("Informatique")
     }
-
-    function List({ items, fallback }) {
-        if (!items || items.length === 0) {
-          return fallback;
-        } else {
-          return items.map((item,i) => {
-            return <div onClick={()=>cluster(item.idProduct,item.marque)} style={{cursor:"pointer"}} key={item.idProduct}>{item.caracteristique}</div>;
-          });
-        }
-      }
 
     const cluster = (idProduct,marque) =>{
         setProduct(marque)
@@ -163,45 +157,74 @@ export default function index() {
         return <div key={item.id}>{item.classe}</div>;
     })};
 
+    const productsGenerator = () => {
+        const items = [];
+        if(tvs!=null)
+        {
+          for (let i = 0; i < tvs.length; i++) {
+            items.push({ 
+              key : tvs[i].id,
+              nom: <td onClick={()=>cluster( tvs[i].idProduct, tvs[i].marque)} style={{cursor:"pointer"}}>{tvs[i].caracteristique}</td>, 
+            });
+          }
+        }
+        return items;
+      };
+    
+      const products = productsGenerator();
+
+    const columns = [
+        {
+          dataField: "nom",
+          text: "Caracteristique",
+          
+        }
+    ];
     return (
-        <div>
+        <div className={styles.container}>
             <div className={styles.homejumia}>
                 <h1>Bienvenue</h1>
                 <p>
                     <button onClick={()=>logout()}>Log out</button>
                 </p>
             </div>
-            <h2>Categorie</h2>
-            <div style={{display:"flex",justifyContent:"space-around"}}>
-                <nav>
+            <div>
+                <h2>Clustering</h2>
+                {itemsToRender}
+            </div>
+            <div className={styles.display}>
+                <nav className={styles.categorie}>
+                    <h2>Categorie</h2>
                     <ul>
-                        <li style={{cursor:'pointer'}} onClick={()=>showTv()}>TV</li>
-                        <li style={{cursor:'pointer'}} onClick={()=>showPhones()}>Phone</li>
-                        <li style={{cursor:'pointer'}} onClick={()=>showFitness()}>Electromenager</li>
-                        <li style={{cursor:'pointer'}} onClick={()=>showWatchs()}>Montres</li>
-                        <li style={{cursor:'pointer'}} onClick={()=>showParfum()}>Parfum</li>
-                        <li style={{cursor:'pointer'}} onClick={()=>showInfo()}>Informatiques</li>
+                        <li style={{cursor:'pointer',listStyle: "none"}} onClick={()=>showTv()}>TV</li>
+                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showPhones()}>Phone</li>
+                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showFitness()}>Electromenager</li>
+                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showWatchs()}>Montres</li>
+                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showParfum()}>Parfum</li>
+                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showInfo()}>Informatiques</li>
                     </ul>
                 </nav>
-                <div>
+                <div className={styles.produit}>
                     <h2>Produits</h2>
-                    <div style={{border:"1px solid black",height:"300px",overflow:"auto",lineHeight:"30px",width:"500px"}}>
-                        <List items={tvs} fallback={"Loading..."} />
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <h2>Clustering</h2>
-                        {itemsToRender}
-                    </div>
-                    <div>
-                        <h2>Produits Recommandes</h2>
-                        <div style={{border:"1px solid black",height:"300px",overflow:"auto",lineHeight:"30px",width:"500px"}}>
-                            <Recommand items={recs} fallback={"Loading..."} />
-                        </div>
+                    <div className={styles.produits}>
+                    <BootstrapTable 
+                        bootstrap4
+                        keyField="id"
+                        data={products}
+                        columns={columns}
+                        pagination={paginationFactory({ sizePerPage: 10 })}
+                    />
                     </div>
                 </div>
             </div>
+            <div>
+                <div>
+                    <h2>Produits Recommandes</h2>
+                    <div style={{border:"1px solid black",height:"300px",overflow:"auto",lineHeight:"30px",width:"500px"}}>
+                        <Recommand items={recs} fallback={"Loading..."} />
+                    </div>
+                </div>
+                </div>
         </div>
     )
 }
