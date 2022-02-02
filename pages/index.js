@@ -1,6 +1,6 @@
 import styles from '../styles/Login.module.css'
 import axios from 'axios'
-import { useState } from 'react'
+import React,{ useState } from 'react'
 import Cookies from 'js-cookie';
 import Link from 'next/link';
 
@@ -43,7 +43,7 @@ export default function Home() {
         </p>
         <Link href="/singup/">
           <div className={styles.link}>
-          <a className={styles.a}>Si vous n'avez pas de compte, cliquer ici !</a>
+          <a className={styles.a}>Si vous n avez pas de compte, cliquer ici !</a>
           </div>
         </Link>
       </div>
