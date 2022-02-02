@@ -11,12 +11,14 @@ export default function Home() {
 
   const login = () =>
   {
-    axios.post("http://localhost:8080/api/login",{
+    axios.post("http://localhost:8081/login",{
       email : email,
       password : password
     })
     .then((response)=>{
-      Cookies.set("iduser",response.data['id']);
+      console.log(response.data[0].id)
+      Cookies.set("iduser",response.data[0].id);
+      Cookies.set("nameUser",response.data[0].nom+" "+response.data[0].prenom);
       window.location.href = "/jumia"
     })
     .catch((err) => console.log(err));

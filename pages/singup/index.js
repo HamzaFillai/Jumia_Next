@@ -13,7 +13,7 @@ export default function Home() {
 
   const register = () =>
   {
-    axios.post("http://localhost:8080/api/users",
+    axios.post("http://localhost:8081/users",
     {
       nom : nom,
       prenom : prenom,
@@ -22,7 +22,7 @@ export default function Home() {
       password : password
     })
     .then((response)=>{
-      console.log("Sucess")
+      window.location.href = "/"
     })
     .catch((err) => console.log(err));
   }

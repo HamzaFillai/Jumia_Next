@@ -19,6 +19,7 @@ export default function Home() {
     const logout = () =>
     {
         Cookies.remove('iduser');
+        Cookies.remove('nameUser');
         window.location.href = "/";
     }
 
@@ -78,15 +79,12 @@ export default function Home() {
 
     const cluster = (idProduct,marque) =>{
         setProduct(marque)
-        axios.post("http://localhost:8080/api/cluster",
+        axios.post("http://localhost:8081/cluster",
         {
           idUser : Cookies.get('iduser'),
           idProduct : idProduct,
           date : date,
           classe : classe
-        })
-        .then((response)=>{
-        console.log("Sucess")
         })
         .catch((err) => console.log(err));
 
@@ -148,14 +146,8 @@ export default function Home() {
     useEffect(() => {
         axios.get("http://localhost:8081/getCluster/"+Cookies.get("iduser")).then((response)=>{
                 setClustering(response.data.reverse());
-            });
+            })
     }, [])
-
-    let itemsToRender;
-    if (clustering) {
-        itemsToRender = clustering.map(item => {
-        return <div key={item.id}>{item.classe}</div>;
-    })};
 
     const productsGenerator = () => {
         const items = [];
@@ -180,51 +172,62 @@ export default function Home() {
           
         }
     ];
+
+    let itemsToRender;
+    if (clustering) {
+        itemsToRender = clustering.map(item => {
+        return <div key={item.id} className={styles.cat}>{item.classe}</div>;
+    })};
+    
     return (
         <div className={styles.container}>
-            <div className={styles.homejumia}>
-                <h1>Bienvenue</h1>
-                <p>
-                    <button onClick={()=>logout()}>Log out</button>
-                </p>
-            </div>
             <div>
-                <h2>Clustering</h2>
-                {itemsToRender}
-            </div>
-            <div className={styles.display}>
-                <nav className={styles.categorie}>
-                    <h2>Categorie</h2>
-                    <ul>
-                        <li style={{cursor:'pointer',listStyle: "none"}} onClick={()=>showTv()}>TV</li>
-                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showPhones()}>Phone</li>
-                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showFitness()}>Electromenager</li>
-                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showWatchs()}>Montres</li>
-                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showParfum()}>Parfum</li>
-                        <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showInfo()}>Informatiques</li>
-                    </ul>
-                </nav>
-                <div className={styles.produit}>
-                    <h2>Produits</h2>
-                    <div className={styles.produits}>
-                    <BootstrapTable 
-                        bootstrap4
-                        keyField="id"
-                        data={products}
-                        columns={columns}
-                        pagination={paginationFactory({ sizePerPage: 10 })}
-                    />
+                <div className={styles.homejumia}>
+                    <h1>Bienvenue {Cookies.get("nameUser")}</h1>
+                    <p>
+                        <button className={styles.btn} onClick={()=>logout()}>Log out</button>
+                    </p>
+                </div>
+                <div className={styles.cluster}>
+                    <h2>Clustering</h2>
+                    <p className={styles.clustering}>
+                        {itemsToRender}
+                    </p>
+                </div>
+                <div className={styles.display}>
+                    <nav className={styles.categorie}>
+                        <h2>Categorie</h2>
+                        <ul>
+                            <li style={{cursor:'pointer',listStyle: "none"}} onClick={()=>showTv()}>TV</li>
+                            <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showPhones()}>Phone</li>
+                            <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showFitness()}>Electromenager</li>
+                            <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showWatchs()}>Montres</li>
+                            <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showParfum()}>Parfum</li>
+                            <li style={{cursor:'pointer', listStyle: "none"}} onClick={()=>showInfo()}>Informatiques</li>
+                        </ul>
+                    </nav>
+                    <div className={styles.produit}>
+                        <h2>Produits</h2>
+                        <div className={styles.produits}>
+                        <BootstrapTable 
+                            bootstrap4
+                            keyField="id"
+                            data={products}
+                            columns={columns}
+                            pagination={paginationFactory({ sizePerPage: 10 })}
+                        />
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div>
                 <div>
-                    <h2>Produits Recommandes</h2>
-                    <div style={{border:"1px solid black",height:"300px",overflow:"auto",lineHeight:"30px",width:"500px"}}>
-                        <Recommand items={recs} fallback={"Loading..."} />
+                    <div>
+                        <h2>Produits Recommandes</h2>
+                        <div style={{border:"1px solid black",height:"300px",overflow:"auto",lineHeight:"30px",width:"500px"}}>
+                            <Recommand items={recs} fallback={""} />
+                        </div>
                     </div>
-                </div>
-                </div>
+                    </div>
+            </div>
         </div>
     )
 }
