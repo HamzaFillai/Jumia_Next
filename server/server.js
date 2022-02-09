@@ -92,8 +92,8 @@ app.post("/users",(request,response)=>{
     const password = request.body.password;
     const age=request.body.age;
     db.query(
-        "INSERT INTO `utilisateur`(`nom`, `prenom`, `age`, `email`, `password`) VALUES (?,?,?,?,?)",
-        [nom,prenom,age,email,password],
+        "INSERT INTO `utilisateur`(`nom`, `prenom`, `email`, `age`, `password`) VALUES (?,?,?,?,?)",
+        [nom,prenom,email,age,password],
         (err,result)=>{
             if(err){
                 console.log(err);

@@ -22,8 +22,11 @@ export default function Home() {
       email : email,
       password : password
     })
+    .then((response)=>{
+      console.log(response);
+      window.location.href = "/"
+    })
     .catch((err) => console.log(err));
-    window.location.href = "/"
   }
 
   return (
