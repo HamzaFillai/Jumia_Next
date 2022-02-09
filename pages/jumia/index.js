@@ -288,12 +288,14 @@ export default function Home() {
                 <div>
                     <div className={styles.recommand}>
                         <h2>Produits Recommandes</h2>
-                        <div style={{border:"0px solid black",height:"300px",overflow:"auto",lineHeight:"30px",width:"70%"}}>
+                        <div className={styles.recommandation}>
                             <Recommand items={recs} fallback={""} />
                         </div>
                     </div>
                 </div>
-                
+                <div className={styles.footer}>
+                    <p className={styles.footer_text}>&#169; Oukrioru Ayoub and Filali Hamza</p>
+                </div>
             </div>
         </div>
     )

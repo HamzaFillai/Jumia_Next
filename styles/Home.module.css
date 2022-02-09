@@ -73,3 +73,22 @@
   padding: 12px;
   border-radius: 6px;
 }
+
+.recommandation {
+  border: "0px solid black";
+  height: 40vh;
+  overflow: "auto";
+  line-height: 30px;
+  width: "70%";
+}
+
+.footer {
+  padding: 12px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.footer_text {
+  font-size: 17px;
+  font-weight: bold;
+}
