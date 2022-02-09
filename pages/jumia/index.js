@@ -292,7 +292,7 @@ export default function Home() {
                 <div>
                     <div className={styles.recommand}>
                         <h2>Produits Recommandes</h2>
-                        <div className={styles.recommandation}>
+                        <div style={{height : "40vh",overflow: "auto",lineHeight: "30px"}}>
                             <Recommand items={recs} fallback={""} />
                         </div>
                     </div>
