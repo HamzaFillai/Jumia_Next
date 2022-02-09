@@ -212,6 +212,7 @@ export default function Home() {
                 array.push("Informatique")
                 let array2 = duplic(array);
                 array2.length=4;
+                console.log(array2);
                 setClustering(array2)
             })
     }, [])
