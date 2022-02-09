@@ -26,7 +26,7 @@ export default function Home() {
 
     const showTv = () =>
     {
-        axios.get("http://localhost:8081/getTvs").then((response)=>{
+        axios.get("https://first-app-herok.herokuapp.com/getTvs").then((response)=>{
             setTvs(response.data);
         });
 
@@ -35,7 +35,7 @@ export default function Home() {
 
     const showPhones = () =>
     {
-        axios.get("http://localhost:8081/getphones").then((response)=>{
+        axios.get("https://first-app-herok.herokuapp.com/getphones").then((response)=>{
             setTvs(response.data);
         });
 
@@ -44,7 +44,7 @@ export default function Home() {
 
     const showFitness = () =>
     {
-        axios.get("http://localhost:8081/getElectro").then((response)=>{
+        axios.get("https://first-app-herok.herokuapp.com/getElectro").then((response)=>{
             setTvs(response.data);
         });
 
@@ -53,7 +53,7 @@ export default function Home() {
 
     const showWatchs = () =>
     {
-        axios.get("http://localhost:8081/getWatchs").then((response)=>{
+        axios.get("https://first-app-herok.herokuapp.com/getWatchs").then((response)=>{
             setTvs(response.data);
         });
 
@@ -62,7 +62,7 @@ export default function Home() {
 
     const showParfum = () =>
     {
-        axios.get("http://localhost:8081/getParfum").then((response)=>{
+        axios.get("https://first-app-herok.herokuapp.com/getParfum").then((response)=>{
             setTvs(response.data);
         });
 
@@ -71,7 +71,7 @@ export default function Home() {
 
     const showInfo = () =>
     {
-        axios.get("http://localhost:8081/getInfo").then((response)=>{
+        axios.get("https://first-app-herok.herokuapp.com/getInfo").then((response)=>{
             setTvs(response.data);
         });
 
@@ -80,7 +80,7 @@ export default function Home() {
 
     const cluster = (idProduct,marque) =>{
         setProduct(marque)
-        axios.post("http://localhost:8081/cluster",
+        axios.post("https://first-app-herok.herokuapp.com/cluster",
         {
           idUser : Cookies.get('iduser'),
           idProduct : idProduct,
@@ -91,14 +91,14 @@ export default function Home() {
 
         if(classe=="Phone")
         {
-            axios.get("http://localhost:8081/getphones").then((response)=>{
+            axios.get("https://first-app-herok.herokuapp.com/getphones").then((response)=>{
                 setRecs(response.data);
             });
         }
 
         if(classe=="TV")
         {
-            axios.get("http://localhost:8081/getTvs").then((response)=>{
+            axios.get("https://first-app-herok.herokuapp.com/getTvs").then((response)=>{
                 setRecs(response.data);
                
             });
@@ -106,28 +106,28 @@ export default function Home() {
         
         if(classe=="Electromenage")
         {
-            axios.get("http://localhost:8081/getElectro").then((response)=>{
+            axios.get("https://first-app-herok.herokuapp.com/getElectro").then((response)=>{
                 setRecs(response.data);
             });
         }
 
         if(classe=="Watchs")
         {
-            axios.get("http://localhost:8081/getWatchs").then((response)=>{
+            axios.get("https://first-app-herok.herokuapp.com/getWatchs").then((response)=>{
                 setRecs(response.data);
             });
         }
 
         if(classe=="Parfum")
         {
-            axios.get("http://localhost:8081/getParfum").then((response)=>{
+            axios.get("https://first-app-herok.herokuapp.com/getParfum").then((response)=>{
                 setRecs(response.data);
             });
         }
 
         if(classe=="Informatique")
         {
-            axios.get("http://localhost:8081/getInfo").then((response)=>{
+            axios.get("https://first-app-herok.herokuapp.com/getInfo").then((response)=>{
                 setRecs(response.data);
             });
         }
@@ -180,7 +180,7 @@ export default function Home() {
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8081/getCluster/"+Cookies.get("iduser")).then((response)=>{
+        axios.get("https://first-app-herok.herokuapp.com/getCluster/"+Cookies.get("iduser")).then((response)=>{
                 if(response.data.length==1)
                 {
                     array.push(response.data[0].classe);
