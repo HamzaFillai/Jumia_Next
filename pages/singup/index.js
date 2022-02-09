@@ -2,6 +2,7 @@ import styles from '../../styles/Signup.module.css'
 import axios from 'axios'
 import { useState } from 'react'
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Home() {
 
@@ -29,6 +30,9 @@ export default function Home() {
 
   return (
    <div className={styles.container}>
+      <Head>
+        <title>Sign up</title>
+      </Head>
       <div className={styles.border}>
         <h1 className={styles.h1}>Creer un utilisateur</h1>
         <table>

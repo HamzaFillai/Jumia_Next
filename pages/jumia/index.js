@@ -6,6 +6,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-table-next/dist/react-bootstrap-table2.min.css";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
+import Head from 'next/head';
 
 export default function Home() {
 
@@ -247,6 +248,9 @@ export default function Home() {
     
     return (
         <div className={styles.container}>
+            <Head>
+                <title>Home</title>
+            </Head>
             <div>
                 <div className={styles.homejumia}>
                     <h1>Bienvenue {Cookies.get("nameUser")}</h1>

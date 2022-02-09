@@ -3,6 +3,7 @@ import axios from 'axios'
 import React,{ useState } from 'react'
 import Cookies from 'js-cookie';
 import Link from 'next/link';
+import Head from 'next/head';
 
 export default function Home() {
 
@@ -26,6 +27,9 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>Sign in</title>
+      </Head>
       <div className={styles.border}>
         <h1 className={styles.h1}>Login</h1>
         <table>
