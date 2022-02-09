@@ -65,3 +65,11 @@
   overflow: "auto";
   line-height: "50px";
 }
+
+.recommand {
+  margin-top: 10vh;
+  margin-left: 10vh;
+  background-color: white;
+  padding: 12px;
+  border-radius: 6px;
+}

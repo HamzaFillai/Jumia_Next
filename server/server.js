@@ -8,10 +8,10 @@ app.use(cors());
 app.use(express.json());
 
 const db = mysql.createConnection({
-    user : "root",
-    host : "localhost",
-    password : "",
-    database : "jumiadatabase"
+    user : "u4ooxunurwqdx5ry",
+    host : "bx4uuisudw69ik5qlu1q-mysql.services.clever-cloud.com",
+    password : "LZNOxJ953U0K5aDXHKlp",
+    database : "bx4uuisudw69ik5qlu1q"
 });
 
 app.get("/getPhones",async(request,response)=>{
@@ -57,7 +57,7 @@ app.get("/getParfum",async(request,response)=>{
 });
 
 app.get("/getCluster/:id",(request,response)=>{
-    db.query("SELECT * FROM `tutorials_cluster` WHERE idUser=? and (classe, date) IN (SELECT classe, Max(date) FROM `tutorials_cluster` GROUP BY classe) ORDER BY date LIMIT 4",
+    db.query("SELECT * FROM `cluster` WHERE idUser=? and (classe, date) IN (SELECT classe, Max(date) FROM `cluster` GROUP BY classe) ORDER BY date LIMIT 4",
     [request.params.id],
     (err,result)=>{
         if(err){
@@ -72,7 +72,7 @@ app.post("/login",(request,response)=>{
     const email = request.body.email;
     const password = request.body.password;
     db.query(
-        "select * from tutorials_profil where email = ? and password = ?",
+        "select * from utilisateur where email = ? and password = ?",
         [email,password],
         (err,result)=>{
             if(err){
@@ -92,7 +92,7 @@ app.post("/users",(request,response)=>{
     const password = request.body.password;
     const age=request.body.age;
     db.query(
-        "INSERT INTO `tutorials_profil`(`nom`, `prenom`, `age`, `email`, `password`) VALUES (?,?,?,?,?)",
+        "INSERT INTO `utilisateur`(`nom`, `prenom`, `age`, `email`, `password`) VALUES (?,?,?,?,?)",
         [nom,prenom,age,email,password],
         (err,result)=>{
             if(err){
@@ -112,7 +112,7 @@ app.post("/cluster",(request,response)=>{
     const date = request.body.date;
     const classe = request.body.classe;
     db.query(
-        "INSERT INTO `tutorials_cluster`(`idUser`, `idProduct`, `date`, `classe`) VALUES (?,?,?,?)",
+        "INSERT INTO `cluster`(`idUser`, `idProduct`, `date`, `classe`) VALUES (?,?,?,?)",
         [idUser,idProduct,new Date(date),classe],
         (err,result)=>{
             if(err){
@@ -126,6 +126,6 @@ app.post("/cluster",(request,response)=>{
     )
 })
 
-app.listen(8081, () => {
+app.listen(process.env.PORT || 8081, () => {
     console.log("Yes, your server is running on port 8081");
 });

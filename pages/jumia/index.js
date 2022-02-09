@@ -137,9 +137,12 @@ export default function Home() {
         if (!items || items.length === 0) {
           return fallback;
         } else {
-          return items.map((item,i) => {  
+          return items.map((item) => {  
             let c = 0;
-            if(item.caracteristique.toString().includes(product)) return <div key={item.idProduct}>{item.caracteristique}</div>; 
+            if(item.caracteristique.toString().includes(product)) 
+            {
+                return <div key={item.idProduct}>{item.caracteristique}</div>; 
+            }
           });
         }
     }
@@ -202,7 +205,7 @@ export default function Home() {
                 }
                 array.push("TV")
                 array.push("Phone")
-                array.push("Montre")
+                array.push("Watchs")
                 array.push("Electromenage")
                 array.push("Parfum")
                 array.push("Informatique")
@@ -283,13 +286,14 @@ export default function Home() {
                     </div>
                 </div>
                 <div>
-                    <div>
+                    <div className={styles.recommand}>
                         <h2>Produits Recommandes</h2>
-                        <div style={{border:"1px solid black",height:"300px",overflow:"auto",lineHeight:"30px",width:"500px"}}>
+                        <div style={{border:"0px solid black",height:"300px",overflow:"auto",lineHeight:"30px",width:"70%"}}>
                             <Recommand items={recs} fallback={""} />
                         </div>
                     </div>
-                    </div>
+                </div>
+                
             </div>
         </div>
     )

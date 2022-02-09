@@ -13,7 +13,7 @@ export default function Home() {
 
   const register = () =>
   {
-    axios.post("http://localhost:8081/users",
+    axios.post("https://first-app-herok.herokuapp.com/users",
     {
       nom : nom,
       prenom : prenom,
